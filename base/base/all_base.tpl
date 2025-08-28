@@ -6,8 +6,6 @@ allow-lan: {{ default(global.clash.allow_lan, "true") }}
 mode: rule
 log-level: {{ default(global.clash.log_level, "silent") }}
 external-controller: 0.0.0.0:9090
-
-{% if request.target == "clash" or request.target == "clashr" %}
 tun:
   enable: true
   auto-detect-interface: false
@@ -19,6 +17,8 @@ tun:
 profile:
   store-selected: true
   store-fake-ip: true
+
+{% if request.target == "clash" or request.target == "clashr" %}
 dns:
   enable: true
   direct-nameserver-follow-policy: false
