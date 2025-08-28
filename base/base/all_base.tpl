@@ -6,17 +6,6 @@ allow-lan: {{ default(global.clash.allow_lan, "true") }}
 mode: rule
 log-level: {{ default(global.clash.log_level, "silent") }}
 external-controller: 0.0.0.0:9090
-tun:
-  enable: true
-  auto-detect-interface: false
-  auto-route: false
-  dns-hijack:
-  - any:53
-  stack: gvisor
-  strict-route: false
-profile:
-  store-selected: true
-  store-fake-ip: true
 
 {% if request.target == "clash" or request.target == "clashr" %}
 dns:
@@ -144,3 +133,15 @@ dns:
 {% endif %}
 
 {% endif %}
+
+tun:
+  enable: true
+  auto-detect-interface: false
+  auto-route: false
+  dns-hijack:
+  - any:53
+  stack: gvisor
+  strict-route: false
+profile:
+  store-selected: true
+  store-fake-ip: true
