@@ -1,12 +1,11 @@
 {% if request.target == "clash" or request.target == "clashr" %}
-
+mode: Rule
 port: {{ default(global.clash.http_port, "7890") }}
 socks-port: {{ default(global.clash.socks_port, "7891") }}
 redir-port: {{ default(global.clash.redir_port, "7892") }}
 tproxy-port:{{ default(global.clash.tproxy-port, "7895") }}
 mixed-port:{{ default(global.clash.mixed-port, "7893") }}
 allow-lan: {{ default(global.clash.allow_lan, "true") }}
-mode: Rule
 log-level: {{ default(global.clash.log_level, "silent") }}
 external-controller: :9090
 
@@ -22,6 +21,7 @@ tun:
 profile:
   store-selected: true
   store-fake-ip: true
+{% else %}
 {% endif %}
 
 {% if request.target == "clash" or request.target == "clashr" %}
@@ -147,16 +147,6 @@ dns:
     - "*.mcdn.bilivideo.cn"
     - "+.media.dssott.com"
     - shark007.net
-{% endif %}
-
-{% if local.clash.new_field_name == "true" %}
-proxies: ~
-proxy-groups: ~
-rules: ~
-{% else %}
-Proxy: ~
-Proxy Group: ~
-Rule: ~
 {% endif %}
 
 {% endif %}
