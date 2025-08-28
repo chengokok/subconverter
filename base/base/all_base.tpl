@@ -12,6 +12,7 @@ mode: rule
 log-level: silent
 external-controller: 0.0.0.0:9090
 
+
 {% if request.target == "clash" or request.target == "clashr" %}
 tun:
   enable: true
