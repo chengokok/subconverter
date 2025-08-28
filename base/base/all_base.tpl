@@ -131,9 +131,6 @@ dns:
     - "+.media.dssott.com"
     - shark007.net
 {% endif %}
-
-{% endif %}
-
 tun:
   enable: true
   auto-detect-interface: false
@@ -145,3 +142,6 @@ tun:
 profile:
   store-selected: true
   store-fake-ip: true
+{% endif %}
+
+
