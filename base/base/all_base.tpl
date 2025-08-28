@@ -2,20 +2,32 @@
 port: {{ default(global.clash.http_port, "7890") }}
 socks-port: {{ default(global.clash.socks_port, "7891") }}
 redir-port: {{ default(global.clash.redir_port, "7892") }}
+tproxy-port: {{ default(global.clash.tproxy-port, "7895") }}
+mixed-port: {{ default(global.clash.mixed-port, "7893") }}
 allow-lan: {{ default(global.clash.allow_lan, "true") }}
+secret: {{ default(global.clash.secret, "123456") }}
+bind-address: {{ default(global.clash.bind-address, "*") }}
+external-ui: {{ default(global.clash.external-ui, "/usr/share/openclash/dashboard") }}
 mode: rule
 log-level: {{ default(global.clash.log_level, "silent") }}
 external-controller: 0.0.0.0:9090
 
 {% if request.target == "clash" or request.target == "clashr" %}
+tun:
+  enable: true
+  stack: gvisor
+  auto-route: false
+  auto-detect-interface: false
+  dns-hijack:
+  - tcp://any:53
+profile:
+  store-selected: true
+  store-fake-ip: true
 dns:
   enable: true
   direct-nameserver-follow-policy: false
   listen: 0.0.0.0:7874
-  prefer-h3: false
-  respect-rules: false
   use-hosts: true
-  use-system-hosts: true
   nameserver:
     - 211.137.64.163
     - 114.114.114.114
@@ -131,17 +143,6 @@ dns:
     - "+.media.dssott.com"
     - shark007.net
 {% endif %}
-tun:
-  enable: true
-  auto-detect-interface: false
-  auto-route: false
-  dns-hijack:
-  - any:53
-  stack: gvisor
-  strict-route: false
-profile:
-  store-selected: true
-  store-fake-ip: true
 {% endif %}
 
 
