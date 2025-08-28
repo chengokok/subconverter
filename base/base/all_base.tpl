@@ -1,5 +1,5 @@
 {% if request.target == "clash" or request.target == "clashr" %}
-mode: Rule
+mode: rule
 port: {{ default(global.clash.http_port, "7890") }}
 socks-port: {{ default(global.clash.socks_port, "7891") }}
 redir-port: {{ default(global.clash.redir_port, "7892") }}
