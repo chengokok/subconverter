@@ -5,7 +5,7 @@ socks-port: {{ default(global.clash.socks_port, "7891") }}
 redir-port: {{ default(global.clash.redir_port, "7892") }}
 allow-lan: {{ default(global.clash.allow_lan, "true") }}
 log-level: {{ default(global.clash.log_level, "error") }}
-external-controller:9090
+external-controller: 0.0.0.0:9090
 
 {% if default(request.clash.tun-set, "0") == "1" %}
 tun:
@@ -26,7 +26,7 @@ profile:
 dns:
   enable: true
   direct-nameserver-follow-policy: false
-  listen:7874
+  listen: 0.0.0.0:7874
   prefer-h3: false
   respect-rules: false
   use-hosts: true
