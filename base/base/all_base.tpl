@@ -5,7 +5,7 @@ redir-port: {{ default(global.clash.redir_port, "7892") }}
 tproxy-port: {{ default(global.clash.tproxy-port, "7895") }}
 mixed-port: {{ default(global.clash.mixed-port, "7893") }}
 allow-lan: {{ default(global.clash.allow_lan, "true") }}
-external-ui: {{ default(global.clash.external-ui, "/usr/share/openclash/dashboard") }}
+#external-ui: {{ default(global.clash.external-ui, "/usr/share/openclash/dashboard") }}
 secret:  "123456"
 bind-address: "*"
 mode: rule
